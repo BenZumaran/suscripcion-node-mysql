@@ -3,9 +3,7 @@ import { pool } from '../db.js'
 export const getUsuarios = async (req, res) => {
     try {
         const [rows] = await pool.query('select * from usuario');
-        res.json({
-            rows
-        })
+        res.json(rows)
     } catch (error) {
         return res.status(500).json({
             message: 'Something goes wrong.'
@@ -38,7 +36,7 @@ export const createUsuario = async (req, res) => {
             fechaRegistro,
             tipo } = req.body;
         const [rows] = await pool.query('insert into usuario (nombre, email, clave, fechaRegistro, tipo) values (?, ?, ?, ?, ?)',
-            [nombre, email, clave,fechaRegistro, tipo])
+            [nombre, email, clave, fechaRegistro, tipo])
         res.send("Se insertó el Usuario: \nid: " + rows.insertId + "\nNombre: " + nombre)
     } catch (error) {
         return res.status(500).json({

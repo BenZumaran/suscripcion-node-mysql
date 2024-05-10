@@ -3,9 +3,7 @@ import { pool } from '../db.js'
 export const getSuscripcion = async (req, res) => {
     try {
         const [rows] = await pool.query('select * from tipo_suscripcion');
-        res.json({
-            rows
-        })
+        res.json(rows)
     } catch (error) {
         return res.status(500).json({
             message: 'Something goes wrong.'

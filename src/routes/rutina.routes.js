@@ -9,4 +9,5 @@ router.post('/rutina', createRutina)
 router.put('/rutina', updateRutina)
 router.delete('/rutina/:id', deleteRutina)
 
+
 export default router

@@ -3,9 +3,7 @@ import { pool } from '../db.js'
 export const getSuscripcionUsuario = async (req, res) => {
     try {
         const [rows] = await pool.query('select * from suscripcion_usuario');
-        res.json({
-            rows
-        })
+        res.json(rows)
     } catch (error) {
         return res.status(500).json({
             message: 'Something goes wrong.'
@@ -33,9 +31,7 @@ export const getSuscripcionUsuarioByIdSuscripcion = async (req, res) => {
         if (rows.length <= 0) return res.status(404).json({
             message: 'Suscripciones con id: ' + req.params.id + '  not found.'
         });
-        res.json({
-            rows
-        });
+        res.json(rows)
     } catch (error) {
         return res.status(500).json({
             message: 'Something goes wrong.'
