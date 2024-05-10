@@ -5,6 +5,7 @@ import indexRoutes from './routes/index.routes.js'
 import usuarioRoutes from './routes/usuario.routes.js'
 import ejercicioRoutes from './routes/ejercicio.routes.js'
 import rutinaRoutes from './routes/rutina.routes.js'
+import rutinaEjercicioRoutes from './routes/rutinaEjercicio.routes.js'
 
 const app = express()
 
@@ -17,6 +18,8 @@ app.use('/api', suscripcionUsuarioRoutes)
 app.use('/api', usuarioRoutes)
 app.use('/api', ejercicioRoutes)
 app.use('/api', rutinaRoutes)
+app.use('/api', rutinaEjercicioRoutes)
+
 
 
 app.use((req, res, next) => {

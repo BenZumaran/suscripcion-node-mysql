@@ -3,9 +3,7 @@ import { pool } from '../db.js'
 export const getEjercicio = async (req, res) => {
     try {
         const [rows] = await pool.query('select * from ejercicio');
-        res.json({
-            rows
-        })
+        res.json(rows)
     } catch (error) {
         return res.status(500).json({
             message: 'Something goes wrong.'
@@ -36,9 +34,10 @@ export const createEjercicio = async (req, res) => {
             nombre,
             musculo,
             dificultad,
-            instruccion } = req.body;
-        const [rows] = await pool.query('insert into ejercicio (tipo, nombre, musculo, dificultad, instruccion) values (?, ?, ?, ?, ?)',
-            [tipo, nombre, musculo, dificultad, instruccion])
+            instruccion,
+            imagen } = req.body;
+        const [rows] = await pool.query('insert into ejercicio (tipo, nombre, musculo, dificultad, instruccion, imagen) values (?, ?, ?, ?, ?, ?)',
+            [tipo, nombre, musculo, dificultad, instruccion, imagen])
         res.send("Se insertó el Ejercicio: \nid: " + rows.insertId + "\nNombre: " + nombre)
     } catch (error) {
         return res.status(500).json({
@@ -54,9 +53,10 @@ export const updateEjercicio = async (req, res) => {
             nombre,
             musculo,
             dificultad,
-            instruccion } = req.body;
-        const [rows] = await pool.query('update ejercicio set tipo=?, nombre=?, musculo=?, dificultad=?, instruccion=? where idEjercicio=?',
-            [tipo, nombre, musculo, dificultad, instruccion, idEjercicio])
+            instruccion,
+            imagen } = req.body;
+        const [rows] = await pool.query('update ejercicio set tipo=?, nombre=?, musculo=?, dificultad=?, instruccion=?, imagen=? where idEjercicio=?',
+            [tipo, nombre, musculo, dificultad, instruccion, imagen, idEjercicio])
         if (rows.length <= 0) return res.status(404).json({
             message: 'Usuario not found.'
         })
