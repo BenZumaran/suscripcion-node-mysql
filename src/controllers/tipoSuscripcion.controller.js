@@ -1,5 +1,4 @@
 import { pool } from '../db.js'
-import { listaTipoSuscripcion } from '../util/util.js';
 
 export const getSuscripcion = async (req, res) => {
     try {
