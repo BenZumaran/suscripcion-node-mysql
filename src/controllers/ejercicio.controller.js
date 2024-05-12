@@ -12,6 +12,22 @@ export const getEjercicio = async (req, res) => {
 
 }
 
+export const getEjercicioMusculo = async (req, res) => {
+    try {
+        const [rows] = await pool.query('select * from ejercicio where musculo = ?', [req.params.musculo]);
+        if (rows.length <= 0) return res.status(404).json({
+            message: 'Musculo not found.'
+        })
+        res.json(rows)
+
+    } catch (error) {
+        return res.status(500).json({
+            message: 'Something goes wrong.'
+        })
+    }
+
+}
+
 export const getEjercicioId = async (req, res) => {
     try {
         const [rows] = await pool.query('select * from ejercicio where idEjercicio = ?', [req.params.id]);
